@@ -1,0 +1,10 @@
+{
+  "name": "express-webpack-plugin",
+  "version": "0.1.0",
+  "main": "ExpressWebpackPlugin.js",
+  "license": "MIT",
+  "devDependencies": {
+    "colors": "^1.4.0"
+  },
+  "dependencies": {}
+}
