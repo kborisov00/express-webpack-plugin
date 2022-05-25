@@ -1,0 +1,8 @@
+{
+  "extends": "@tsconfig/node14/tsconfig.json",  // extends configuration based on node.js version
+  "compilerOptions": {
+    "outDir": "build"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
