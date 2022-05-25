@@ -1,5 +1,5 @@
 # Express.js Webpack Plugin
-> Hot reload for your webpack-bundled express application without adding any code to the application's source code
+> Hot reload for your webpack-bundled express application
 
 ### How To Use It
 - install the package using npm / yarn
