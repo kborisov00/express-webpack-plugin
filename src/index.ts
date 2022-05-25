@@ -1,1 +1,3 @@
-console.log("Hello, world!");
+import ExpressWebpackPlugin from "./plugin/plugin";
+
+export default ExpressWebpackPlugin;
