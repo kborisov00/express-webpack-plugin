@@ -35,15 +35,13 @@ class ExpressWebpackPlugin implements WebpackPluginInstance {
   }
 
   apply(compiler: Compiler) {
+    const isWatching = compiler.options.watch;
+    if (!isWatching) return;
+
     const entries = Object.keys(compiler.options.entry);
     if (entries.length > 1) throwMultipleEntriesError();
 
     this.buildPath = getBuildPath(compiler.options.output);
-    const isWatching = compiler.options.watch;
-    const isDevelopment = compiler.options.mode === "development";
-
-    if (!isDevelopment || !isWatching) return;
-
     compiler.hooks.beforeCompile.tap(PLUGIN_NAME, this.beforeCompile());
     compiler.hooks.afterCompile.tap(PLUGIN_NAME, this.afterCompile());
   }
