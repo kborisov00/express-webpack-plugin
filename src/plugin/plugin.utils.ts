@@ -1,6 +1,6 @@
+import { join } from "path";
 import { Compiler } from "webpack";
 import { spawn } from "child_process";
-import { join } from "path";
 
 import type { ChildProcessWithoutNullStreams } from "child_process";
 
@@ -22,7 +22,10 @@ export function startExpress(
   const expressInstance = spawn("node", [buildPath], { shell: false });
 
   expressInstance.stdout.on("data", stdout);
+  expressInstance.stdout.setEncoding("utf8");
+
   expressInstance.stderr.on("data", stderr);
+  expressInstance.stderr.setEncoding("utf8");
 
   return expressInstance;
 }
