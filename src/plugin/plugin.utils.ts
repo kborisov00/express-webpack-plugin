@@ -5,15 +5,17 @@ import { spawn } from "child_process";
 import type { ChildProcessWithoutNullStreams } from "child_process";
 
 import { defaultMessage } from "../utils/logger";
+import { throwFileNameError, throwPathError } from "../utils/errors";
 
 export function getBuildPath(
   output: Compiler["options"]["output"]
 ): string | null {
   const { path, filename } = output;
 
-  if (!path || !filename) return null;
+  if (!path) throwPathError();
+  if (!filename) throwFileNameError();
 
-  return join(path, filename as string);
+  return join(path!, filename! as string);
 }
 
 export function startExpress(
