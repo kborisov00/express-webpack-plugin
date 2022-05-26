@@ -1,7 +1,8 @@
 {
   "name": "express-webpack-plugin",
-  "version": "0.0.0",
+  "version": "1.1.1",
   "license": "MIT",
+  "description": "Express.js hot-reload webpack plugin",
   "main": "build/index.js",
   "scripts": {
     "build": "tsc",
