@@ -33,17 +33,17 @@ export function stopExpress(
   expressInstance.kill("SIGINT");
 }
 
-function formatData(data: any) {
+function formatData(data: any): string {
   return data
     .toString()
     .replace(/\s{2,}/g, "")
     .trim();
 }
 
-function stdout(data: any) {
+function stdout(data: any): void {
   defaultMessage(formatData(data));
 }
 
-function stderr(data: any) {
+function stderr(data: any): void {
   defaultMessage(formatData(data));
 }
