@@ -1,8 +1,9 @@
 import type { Compiler, WebpackPluginInstance } from "webpack";
 import type { ChildProcessWithoutNullStreams } from "child_process";
 
-import { message } from '../utils/logger';
+import MESSAGES from "../config/messages.config";
 import { PLUGIN_NAME } from "../config/plugin.config";
+import { pluginMessage, clearConsole } from "../utils/logger";
 
 import { startExpress, stopExpress, getBuildPath } from "./plugin.utils";
 
@@ -17,9 +18,10 @@ class ExpressWebpackPlugin implements WebpackPluginInstance {
 
   beforeCompile() {
     return () => {
-      if (!this.expressInstance) return;
+      clearConsole();
+      pluginMessage(this.expressInstance ? MESSAGES.restarting : MESSAGES.init);
 
-      message("stopping express");
+      if (!this.expressInstance) return;
       stopExpress(this.expressInstance);
     };
   }
@@ -27,8 +29,6 @@ class ExpressWebpackPlugin implements WebpackPluginInstance {
   afterCompile() {
     return () => {
       if (!this.buildPath) return;
-      
-      message("starting express");
       this.expressInstance = startExpress(this.buildPath);
     };
   }

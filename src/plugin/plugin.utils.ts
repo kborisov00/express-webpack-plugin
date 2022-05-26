@@ -4,6 +4,8 @@ import { join } from "path";
 
 import type { ChildProcessWithoutNullStreams } from "child_process";
 
+import { defaultMessage } from "../utils/logger";
+
 export function getBuildPath(
   output: Compiler["options"]["output"]
 ): string | null {
@@ -32,13 +34,16 @@ export function stopExpress(
 }
 
 function formatData(data: any) {
-  return data.toString().replace(/\s{2,}/g, '').trim();
+  return data
+    .toString()
+    .replace(/\s{2,}/g, "")
+    .trim();
 }
 
 function stdout(data: any) {
-  console.log(formatData(data));
+  defaultMessage(formatData(data));
 }
 
 function stderr(data: any) {
-  console.log(formatData(data));
+  defaultMessage(formatData(data));
 }
