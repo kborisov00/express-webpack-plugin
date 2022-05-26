@@ -1,10 +1,9 @@
-// lib
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 
 const entryPoint = path.join(__dirname, "src", "index.ts");
 
-const ExpressWebpackPlugin = require("../../build/index").default;
+const ExpressWebpackPlugin = require("../../build/index");
 
 module.exports = {
   target: "node",
