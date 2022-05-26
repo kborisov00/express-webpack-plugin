@@ -3,6 +3,7 @@ import type { ChildProcessWithoutNullStreams } from "child_process";
 
 import MESSAGES from "../config/messages.config";
 import { PLUGIN_NAME } from "../config/plugin.config";
+import { throwMultipleEntriesError } from "../utils/errors";
 import { pluginMessage, clearConsole } from "../utils/logger";
 
 import { startExpress, stopExpress, getBuildPath } from "./plugin.utils";
@@ -34,6 +35,9 @@ class ExpressWebpackPlugin implements WebpackPluginInstance {
   }
 
   apply(compiler: Compiler) {
+    const entries = Object.keys(compiler.options.entry);
+    if (entries.length > 1) throwMultipleEntriesError();
+
     this.buildPath = getBuildPath(compiler.options.output);
     const isWatching = compiler.options.watch;
     const isDevelopment = compiler.options.mode === "development";

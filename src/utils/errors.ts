@@ -9,3 +9,7 @@ export function throwFileNameError() {
 export function throwPathError() {
   throw new WebpackError(MESSAGES.pathError);
 }
+
+export function throwMultipleEntriesError() {
+  throw new WebpackError(MESSAGES.multipleEntriesError);
+}
